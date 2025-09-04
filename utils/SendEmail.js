@@ -13,7 +13,7 @@ const sendEmail = async (email, name, ticketNumber) => {
 	const mailOptions = {
 		from: 'Vidhya Route <vidhyaroute@gmail.com>',
 		to: email,
-		cc: 'vidhyaroute@gmail.com , kunalberia@vidhyaaroute.com, souravkumar@vidhyaaroute.com ',
+		cc: 'vidhyaroute@gmail.com , kunalberia@vidhyaroute.com, souravkumar@vidhyaroute.com ',
 		subject: `Vidhyaaroute - Study Abroad Information (Ticket: ${ticketNumber})`,
 		html: `<!DOCTYPE html>
 <html lang="en">
