@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongoURI =
-	'mongodb+srv://nexsolvesolutions:34598345790237598714327534@cluster0.ecnexqv.mongodb.net/Queries?retryWrites=true&w=majority&appName=Cluster0';
+	'mongodb+srv://vidhyaroute_db_user:83563763463466@vidhyaaroute.ndvkcop.mongodb.net/Vidhyaaroute?retryWrites=true&w=majority&appName=Vidhyaaroute';
 
 mongoose.connect(mongoURI);
 
@@ -13,4 +13,3 @@ db.once('open', () => {
 });
 
 module.exports = db;
-    

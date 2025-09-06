@@ -11,22 +11,24 @@ const AddNewCountries = (req, res) => {
 		page_content,
 	} = req.body;
 
+	// Validate required fields
 	if (
-		(meta_title,
-		meta_keywords,
-		meta_description,
-		page_url,
-		page_image_tag,
-		title,
-		page_content)
+		!meta_title ||
+		!meta_keywords ||
+		!meta_description ||
+		!page_url ||
+		!title ||
+		!page_content
 	) {
-		res.status(200).json({
+		return res.status(400).json({
 			baseResponse: {
 				message: 'BAD_REQUEST',
-				status: 1,
+				status: 0,
 			},
 		});
-	} else {
+	}
+
+	try {
 		const newPage = new countriesModel({
 			meta_title,
 			meta_keywords,
@@ -37,15 +39,20 @@ const AddNewCountries = (req, res) => {
 			page_content,
 		});
 
-		res.status(200).json({
-			baseResponse: { message: 'STATUS_OK', status: 1 },
+		// You probably want to save it
+		newPage.save();
+
+		return res.status(200).json({
+			baseResponse: { message: 'COUNTRY_ADDED', status: 1 },
 			response: newPage,
 		});
+	} catch (error) {
+		console.error('Error creating country page:', error);
+		return res.status(500).json({
+			baseResponse: { message: 'INTERNAL_SERVER_ERROR', status: 0 },
+			response: [],
+		});
 	}
-	res.status(200).json({
-		baseResponse: { message: 'INTERNAL_SERVER_ERROR', status: 0 },
-		response: [],
-	});
 };
 
 // Get all pages

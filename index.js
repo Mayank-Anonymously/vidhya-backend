@@ -6,7 +6,7 @@ const path = require('path');
 const drouter = require('./router/dynamicPage.js');
 const srouter = require('./router/servicesRouter.js');
 const crouter = require('./router/countiresPage.js');
-const urouter = require('./router/universtiesModel.js');
+const urouter = require('./router/universtiesRouter.js');
 require('./utils/config.js');
 
 app.use(cors());

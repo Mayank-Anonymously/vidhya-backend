@@ -1,34 +1,39 @@
 const Universities = require('../model/universitiesModel');
 
-const AddNewUniversity = (req, res) => {
-	const {
-		meta_title,
-		meta_keywords,
-		meta_description,
-		category,
-		page_url,
-		page_image_tag,
-		title,
-		page_content,
-	} = req.body;
+const AddNewUniversity = async (req, res) => {
+	try {
+		const {
+			meta_title,
+			meta_keywords,
+			meta_description,
+			category,
+			page_url,
+			page_image_tag,
+			title,
+			page_content,
+		} = req.body;
+		// validation
+		if (
+			!meta_title ||
+			!meta_keywords ||
+			!meta_description ||
+			!category ||
+			!page_url ||
+			!page_image_tag ||
+			!title ||
+			!page_content
+		) {
+			return res.status(400).json({
+				baseResponse: {
+					message: 'BAD_REQUEST: Missing required fields',
+					status: 0,
+				},
+			});
+		}
 
-	if (
-		(meta_title,
-		meta_keywords,
-		meta_description,
-		category,
-		page_url,
-		page_image_tag,
-		title,
-		page_content)
-	) {
-		res.status(200).json({
-			baseResponse: {
-				message: 'BAD_REQUEST',
-				status: 1,
-			},
-		});
-	} else {
+		// ✅ Handle uploaded image (single file)
+		const image = req.file ? req.file.filename : null;
+
 		const newPage = new Universities({
 			meta_title,
 			meta_keywords,
@@ -38,17 +43,22 @@ const AddNewUniversity = (req, res) => {
 			page_image_tag,
 			title,
 			page_content,
+			image, // only one image stored
 		});
+		console.log(image);
+		await newPage.save();
 
-		res.status(200).json({
-			baseResponse: { message: 'STATUS_OK', status: 1 },
+		res.status(201).json({
+			baseResponse: { message: 'UNIVERSITY_ADDED', status: 1 },
 			response: newPage,
 		});
+	} catch (error) {
+		console.error('AddNewUniversity error:', error);
+		res.status(500).json({
+			baseResponse: { message: 'INTERNAL_SERVER_ERROR', status: 0 },
+			error: error.message,
+		});
 	}
-	res.status(200).json({
-		baseResponse: { message: 'INTERNAL_SERVER_ERROR', status: 0 },
-		response: [],
-	});
 };
 
 // Get all pages

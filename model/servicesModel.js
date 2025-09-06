@@ -10,6 +10,7 @@ const services = new mongoose.Schema(
 		page_image_tag: { type: String, required: true },
 		title: { type: String, required: true },
 		page_content: { type: String, required: true },
+		image: { type: String },
 	},
 	{ timestamps: true }
 );
