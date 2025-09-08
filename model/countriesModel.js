@@ -8,6 +8,7 @@ const couuntires = new mongoose.Schema(
 		page_url: { type: String, required: true },
 		title: { type: String, required: true },
 		page_content: { type: String, required: true },
+		country_name: { type: String, required: true },
 	},
 	{ timestamps: true }
 );

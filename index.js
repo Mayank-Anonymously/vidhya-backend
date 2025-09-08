@@ -17,7 +17,7 @@ app.use('/api/v1/query', queryroute);
 app.use('/resources', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/v1/pages', drouter);
 app.use('/api/v1/services', srouter);
-app.use('/api/v1/countires', crouter);
+app.use('/api/v1/countries', crouter);
 app.use('/api/v1/university', urouter);
 
 app.listen(3202);

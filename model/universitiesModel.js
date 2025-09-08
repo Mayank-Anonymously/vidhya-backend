@@ -11,6 +11,13 @@ const univerities = new mongoose.Schema(
 		title: { type: String, required: true },
 		page_content: { type: String, required: true },
 		image: { type: String },
+		name: { type: String, required: true },
+		location: { type: String, required: true },
+		ranking: { type: String },
+		description: { type: String },
+		highlights: [{ type: String }], // array of strings
+		tuitionRange: { type: String },
+		popularPrograms: [{ type: String }], // array of strings
 	},
 	{ timestamps: true }
 );

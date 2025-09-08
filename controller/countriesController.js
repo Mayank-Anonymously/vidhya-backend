@@ -9,6 +9,7 @@ const AddNewCountries = (req, res) => {
 		page_image_tag,
 		title,
 		page_content,
+		country_name,
 	} = req.body;
 
 	// Validate required fields
@@ -18,7 +19,8 @@ const AddNewCountries = (req, res) => {
 		!meta_description ||
 		!page_url ||
 		!title ||
-		!page_content
+		!page_content ||
+		!country_name
 	) {
 		return res.status(400).json({
 			baseResponse: {
@@ -37,6 +39,7 @@ const AddNewCountries = (req, res) => {
 			page_image_tag,
 			title,
 			page_content,
+			country_name,
 		});
 
 		// You probably want to save it
@@ -58,7 +61,7 @@ const AddNewCountries = (req, res) => {
 // Get all pages
 const GetAllCountries = async (req, res) => {
 	try {
-		const pages = await countriesModel.find();
+		const pages = await countriesModel.find({});
 		res.status(200).json({
 			baseResponse: { message: 'STATUS_OK', status: 1 },
 			response: pages,
