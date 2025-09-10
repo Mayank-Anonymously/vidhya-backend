@@ -9,7 +9,24 @@ const crouter = require('./router/countiresPage.js');
 const urouter = require('./router/universtiesRouter.js');
 require('./utils/config.js');
 
-app.use(cors());
+const allowedOrigins = [
+	'http://localhost:3000', // Local development
+	'https://vidhyaroute-portal.vercel.app/', // Production domain
+	'https://crm.vidhyaroute.com', // Optional www version
+	'https://www.crm.vidhyaroute.com', // Optional www version
+];
+app.use(
+	cors({
+		origin: function (origin, callback) {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true); // allow request
+			} else {
+				callback(new Error('Not allowed by CORS')); // block request
+			}
+		},
+		credentials: true, // if you need cookies/auth headers
+	})
+);
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 

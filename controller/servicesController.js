@@ -1,6 +1,7 @@
 const services = require('../model/servicesModel');
 
 const AddNewService = async (req, res) => {
+	console.log('servicehitrecieved');
 	try {
 		const {
 			meta_title,
