@@ -63,7 +63,7 @@ const GenerateQueryNormalQuery = async (req, res) => {
   }
 };
 
-const GetAllQueries = async () => {
+const GetAllQueries = async (req, res) => {
   const findAllQuery = await Query.find({});
   if (findAllQuery) {
     res.status(200).json({
