@@ -16,6 +16,8 @@ const allowedOrigins = [
   "https://vidhyaroute-portal.vercel.app", // Production domain
   "https://crm.vidhyaroute.com", // Optional www version
   "https://www.crm.vidhyaroute.com", // Optional www version
+  "https://www.vidhyaroute.com", // Optional www version
+  "https://vidhyaroute.com", // Optional www version
 ];
 app.use(
   cors({
